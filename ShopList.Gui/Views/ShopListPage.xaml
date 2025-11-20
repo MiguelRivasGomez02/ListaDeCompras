@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ShopList.Gui.ViewModels"
+             xmlns:model="clr-namespace:ShopList.Gui.Models"
+             x:DataType="viewmodel:ShopListViewModel"
+             x:Class="ShopList.Gui.Views.ShopListPage"
+             Title="Lista de Compras">
+    <Grid
+
+        RowDefinitions="Auto,*"
+
+        Padding="12"
+
+        RowSpacing="8">
+        <Grid
+
+            Grid.Row="0"
+
+            Grid.Column="0"
+
+            RowDefinitions="Auto,Auto"
+
+            ColumnDefinitions="Auto,*,Auto,Auto"
+
+            RowSpacing="4"
+
+            ColumnSpacing="4">
+            <Label
+
+                Grid.Row="0"
+
+                Grid.Column="0"
+
+                Text="Producto:"
+
+                VerticalOptions="Center"/>
+            <Entry
+
+                Grid.Row="0"
+
+                Grid.Column="1"
+
+                Grid.ColumnSpan="3"
+
+                BackgroundColor="#f0f0f0"
+
+                TextColor="Black"
+
+               Text="{Binding NombreDelArticulo}"/>
+            <Label
+
+                Grid.Row="1"
+
+                Grid.Column="0"
+
+                Text="Cantidad:"
+
+                VerticalOptions="Center"/>
+            <Entry
+
+                Grid.Row="1"
+
+                Grid.Column="1"
+
+                BackgroundColor="#f0f0f0"
+
+                TextColor="Black"
+
+                Text="{Binding Cantidad}"/>
+            <Button
+
+                Grid.Row="1"
+
+                Grid.Column="2"
+
+                Text="+"
+
+                Command="{Binding AddShopListItemsCommand}"/>
+            <Button
+
+                Grid.Row="1"
+
+                Grid.Column="3"
+
+                Text="X"/>
+        </Grid>
+        <CollectionView
+
+            Grid.Row="1"
+
+            Grid.Column="0"
+
+            BackgroundColor="#f0f0f0"
+
+            ItemsSource="{Binding ShopList}"
+
+            EmptyView="No se han agregado productos"
+
+            SelectionMode="Single">
+            <CollectionView.Header>
+                <Border
+
+                        Stroke="LightGray"
+
+                        StrokeThickness="1"
+
+                        Padding="8,0">
+                    <Grid
+
+                            ColumnDefinitions="Auto,*,Auto">
+                        <CheckBox
+
+                                Grid.Column="0"
+
+                                VerticalOptions="Center"
+
+                                HorizontalOptions="Center"/>
+                        <Label
+
+                                Grid.Column="1"
+
+                                Text="Nombre"
+
+                                VerticalOptions="Center"/>
+                        <Label
+
+                                Grid.Column="2"
+
+                                Text="Cantidad"
+
+                                VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+
+                        Stroke="LightGray"
+
+                        BackgroundColor="LightGray"
+
+                        Padding="8,0">
+                        <Grid
+
+                            ColumnDefinitions="Auto,*,Auto">
+                            <CheckBox
+
+                                Grid.Column="0"
+
+                                IsChecked="{Binding Comprado}"/>
+                            <Label
+
+                                Grid.Column="1"
+
+                                Text="{Binding Nombre}"
+
+                                VerticalOptions="Center"/>
+                            <Label
+
+                                Grid.Column="2"
+
+                                Text="{Binding Cantidad}"
+
+                                VerticalOptions="Center"/>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
+ 
